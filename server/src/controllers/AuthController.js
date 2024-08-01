@@ -40,8 +40,44 @@ exports.signup = async (req, res) => {
   }
 };
 exports.login = async (req, res) => {
-  console.log("login");
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!user || !isPasswordCorrect) {
+      res.status(400).json({ message: "Invalid Username or Password" });
+    }
+
+    // Update isActive field
+    user.isActive = true;
+    await user.save();
+
+    // Generate token and set it in the cookies
+    await generateToken(user._id, res);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 exports.logout = async (req, res) => {
-  console.log("logout");
+  try {
+    // Retrieve the user ID from the request parameters
+    const { userId } = req.params;
+
+    // Clear the JWT cookie
+    res.cookie("jwt", "", { maxAge: 0 });
+
+    // Find the user by ID and update the isActive field
+    const user = await User.findById(userId);
+    if (user) {
+      user.isActive = false;
+      await user.save();
+      res.status(200).json({ message: "Logged out Successfully" });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

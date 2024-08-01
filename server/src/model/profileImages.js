@@ -8,17 +8,34 @@ const profileImageSchema = new mongoose.Schema({
 // Create a model
 const ProfileImage = mongoose.model("ProfileImage", profileImageSchema);
 
+// Function to get all URLs
+async function getAllUrls() {
+  try {
+    // Fetch all documents
+    const result = await ProfileImage.findOne({}); // Assuming only one document with URLs
+    if (result && result.urls && result.urls.length > 0) {
+      return result.urls;
+    } else {
+      console.log("No URLs found");
+      return [];
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    return [];
+  }
+}
+
+// Function to get a random URL
 async function getRandomUrl() {
   try {
-    // Use aggregation to sample one random document
-    const result = await ProfileImage.aggregate([{ $sample: { size: 1 } }]);
-    if (result.length > 0 && result[0].urls && result[0].urls.length > 0) {
-      // Select a random URL from the array in the document
-      const urls = result[0].urls;
+    // Get all URLs
+    const urls = await getAllUrls();
+    if (urls.length > 0) {
+      // Select a random URL from the array
       const randomUrl = urls[Math.floor(Math.random() * urls.length)];
       return randomUrl;
     } else {
-      console.log("No URLs found");
+      console.log("No URLs available");
       return null;
     }
   } catch (err) {

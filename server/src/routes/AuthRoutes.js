@@ -1,9 +1,9 @@
 const express = require("express");
-const { signup, login } = require("../controllers/AuthController");
+const { signup, login, logout } = require("../controllers/AuthController");
 const authRoutes = express.Router();
 
-authRoutes.get("/login", login);
+authRoutes.post("/login", login);
 authRoutes.post("/signup", signup);
+authRoutes.post("/logout/:userId", logout);
 
 module.exports = authRoutes;
-//18.25
