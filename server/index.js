@@ -14,10 +14,10 @@ app.get("/", (req, res) => {
   res.json({ status: "success" });
 });
 
+let URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/e-commerce";
+
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@main.1yclogy.mongodb.net/?retryWrites=true&w=majority&appName=main`
-  )
+  .connect(URI)
   .then(() => {
     console.log("Connected to the database");
     app.listen(port, () => {

@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    minlength: 6,
   },
   profilePicture: {
     type: String,
@@ -21,16 +22,16 @@ const UserSchema = new mongoose.Schema({
   },
   isActive: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   lastActive: {
     type: Date,
     default: Date.now,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 });
 
 // Create a text index on the username field
