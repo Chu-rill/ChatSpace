@@ -72,6 +72,12 @@ exports.logout = async (req, res) => {
     const user = await User.findById(userId);
     if (user) {
       user.isActive = false;
+      const date = new Date();
+
+      // Offset in milliseconds (1 hour = 3600000 milliseconds)
+      const offset = 1 * 60 * 60 * 1000; // GMT+1
+      const localDate = new Date(date.getTime() + offset);
+      user.lastActive = localDate; // Set lastActive to the current time
       await user.save();
       res.status(200).json({ message: "Logged out Successfully" });
     } else {
