@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "", // URL to the profile picture
   },
+  Bio: {
+    type: String,
+    required: false,
+    default: "",
+  },
   isActive: {
     type: Boolean,
     default: false,
