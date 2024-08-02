@@ -6,7 +6,7 @@ export default function Signup() {
       <div className=" w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 ">
         <h1 className=" text-3xl font-semibold text-center text-gray-300 ">
           Sign Up
-          <span className=" text-blue-500 ">ChatSpace</span>
+          <span className="ml-2 text-blue-500 ">ChatSpace</span>
         </h1>
 
         <form>
@@ -16,7 +16,7 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              placeholder="Enter username"
+              placeholder="John Doe"
               className=" w-full input input-bordered h-10 "
             />
           </div>
@@ -35,7 +35,7 @@ export default function Signup() {
             href="#"
             className=" text-sm hover:underline hover:text-blue-600 mt-2 inline-block "
           >
-            Have an account?
+            Already have an account?
           </a>
 
           <div>
