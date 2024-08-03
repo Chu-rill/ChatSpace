@@ -56,7 +56,10 @@ exports.login = async (req, res) => {
     // Generate token and set it in the cookies
     await generateToken(user._id, res);
 
-    return res.status(200).json(user);
+    // Exclude password field manually before sending response
+    const { password: pwd, ...userWithoutPassword } = user.toObject();
+
+    return res.status(200).json(userWithoutPassword);
   } catch (error) {
     if (!res.headersSent) {
       return res.status(500).json({ message: error.message });
