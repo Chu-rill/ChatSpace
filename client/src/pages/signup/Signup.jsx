@@ -77,8 +77,13 @@ export default function Signup() {
             <button
               type="submit"
               className=" btn btn-accent btn-block btn-sm mt-2 "
+              disabled={loading}
             >
-              Sign Up
+              {loading ? (
+                <span className="loading loading-dots loading-md"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
