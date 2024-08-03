@@ -1,17 +1,25 @@
 import React from "react";
-
-export default function Message() {
+import useConversation from "../../zustand/useConversation";
+import { useAuthContext } from "../../context/AuthContext";
+export default function Message({ message }) {
+  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { authUser } = useAuthContext();
+  const isSender = message.senderId === authUser._id;
+  const chatClassName = isSender ? "chat-end" : "chat-start";
+  const profilePic = isSender
+    ? authUser.profilePicture
+    : selectedConversation?.profilePicture;
+  const bubbleBgColor = isSender ? "bg-blue-500" : "";
   return (
-    <div className=" chat chat-end ">
+    <div className={`chat ${chatClassName}`}>
       <div className=" chat-image avatar ">
         <div className="w-10 rounded-full">
-          <img
-            src={"https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Muffin"}
-            alt="Tailwind chat bubble"
-          />
+          <img src={profilePic} alt="Tailwind chat bubble" />
         </div>
       </div>
-      <div className={` chat-bubble text-white bg-blue-500`}>Hi what's up</div>
+      <div className={` chat-bubble text-white  ${bubbleBgColor}`}>
+        {message.message}
+      </div>
       <div className=" chat-footer opacity-50 text-xs flex gap-1 items-center ">
         12:42
       </div>
