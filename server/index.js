@@ -32,6 +32,6 @@ mongoose
     console.log("Connection failed");
   });
 
-app.use("/auth", authRoutes);
-app.use("/msg", messageRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/msg", messageRoutes);
+app.use("/api/users", userRoutes);
