@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!user || !isPasswordCorrect) {
-      res.status(400).json({ message: "Invalid Username or Password" });
+      return res.status(400).json({ message: "Invalid Username or Password" });
     }
 
     // Update isActive field
@@ -55,11 +55,16 @@ exports.login = async (req, res) => {
 
     // Generate token and set it in the cookies
     await generateToken(user._id, res);
-    res.status(200).json(user);
+
+    return res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (!res.headersSent) {
+      return res.status(500).json({ message: error.message });
+    }
+    console.error("Error after headers sent:", error);
   }
 };
+
 exports.logout = async (req, res) => {
   try {
     // Retrieve the user ID from the request parameters
