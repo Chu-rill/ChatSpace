@@ -1,8 +1,9 @@
 const express = require("express");
 const Conversation = require("../model/conversation_model");
 const Message = require("../model/message_model");
+const { getReceiverSocketId } = require("../socket/socket");
 
-exports.sendMessage = async (req, res) => {
+exports.sendMessage = async (req, res, io) => {
   try {
     const { message } = req.body;
     const { id: receiverId } = req.params;
@@ -31,6 +32,13 @@ exports.sendMessage = async (req, res) => {
     conversation.messages.push(newMessage._id);
 
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      //send event to a specific client
+      // io.to(<socket_id>).emit() used to send events to specific client
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {

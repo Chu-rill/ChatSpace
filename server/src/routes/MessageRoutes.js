@@ -1,4 +1,5 @@
 const express = require("express");
+const { io } = require("../socket/socket");
 const {
   sendMessage,
   getMessages,
@@ -6,6 +7,8 @@ const {
 const protectRoute = require("../middleware/protectRoute");
 const messageRoutes = express.Router();
 
-messageRoutes.post("/send/:id", protectRoute, sendMessage);
+messageRoutes.post("/send/:id", protectRoute, (req, res) => {
+  sendMessage(req, res, io);
+});
 messageRoutes.get("/:id", protectRoute, getMessages);
 module.exports = messageRoutes;
