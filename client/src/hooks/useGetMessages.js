@@ -6,13 +6,18 @@ const useGetMessages = () => {
   const { messages, setMessages, selectedConversation } = useConversation();
   useEffect(() => {
     const getMessages = async () => {
+      if (!selectedConversation?._id) return;
       setLoading(true);
       try {
         const res = await fetch(`/api/msg/${selectedConversation._id}`);
         const data = await res.json();
         console.log(data);
-        if (data.error) {
-          throw new Error(data.error);
+        // if (data.error) {
+        //   throw new Error(data.error);
+        // }
+
+        if (!res.ok) {
+          throw new Error(data.message || "Failed to fetch messages");
         }
 
         setMessages(data);

@@ -1,9 +1,11 @@
 import React from "react";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
+import { extractTime } from "../../utils/extractTime";
 export default function Message({ message }) {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { authUser } = useAuthContext();
+  const formatedTime = extractTime(message.createdAt);
   const isSender = message.senderId === authUser._id;
   const chatClassName = isSender ? "chat-end" : "chat-start";
   const profilePic = isSender
@@ -21,7 +23,7 @@ export default function Message({ message }) {
         {message.message}
       </div>
       <div className=" chat-footer opacity-50 text-xs flex gap-1 items-center ">
-        12:42
+        {formatedTime}
       </div>
     </div>
   );
