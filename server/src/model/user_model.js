@@ -22,8 +22,8 @@ const UserSchema = new mongoose.Schema({
   },
   Bio: {
     type: String,
-    required: false,
-    default: "",
+    required: true,
+    default: "Hey there! I am using ChatSpace.",
   },
   isActive: {
     type: Boolean,
