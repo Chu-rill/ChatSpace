@@ -1,7 +1,6 @@
 import React from "react";
 import useConversation from "../../zustand/useConversation";
 import { useSocketContext } from "../../context/SocketContext";
-
 export default function Conversation({ conversation, lastIdx }) {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { onlineUsers } = useSocketContext();
@@ -22,7 +21,12 @@ export default function Conversation({ conversation, lastIdx }) {
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex gap-3 justify-between">
-            <p className=" font-bold text-gray-200 ">{conversation.username}</p>
+            <div>
+              <p className=" font-bold text-gray-200 ">
+                {conversation.username}
+              </p>
+              <p className=" text-[12px]">{conversation.Bio}</p>
+            </div>
             {/* <span className=" text-xl ">🦦</span> */}
           </div>
         </div>
