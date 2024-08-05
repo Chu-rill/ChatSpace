@@ -31,26 +31,35 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
    ```
 
 2. **Install backend dependencies**
+
    Navigate to the root folder and run:
+
+   ```bash
    npm install
+   ```
 
 3. **Install frontend dependencies**
    Navigate to the client folder and run:
-
-cd client
-npm install
+   ```bash
+   cd client
+   npm install
+   ```
 
 ### Running the Application
 
 1. **Start the backend server**
    From the root folder, run:
 
+```bash
 npm run server
+```
 
 2. **Start the frontend development server**
    From the client folder, run:
 
+```bash
 npm run dev
+```
 
 ### Basic API Endpoints
 
@@ -86,8 +95,8 @@ JWT_SECRET=<your-jwt-secret>
 
 ### Contributing
 
-Fork the repository
-Create a new branch (git checkout -b feature-branch)
-Commit your changes (git commit -am 'Add new feature')
-Push to the branch (git push origin feature-branch)
-Create a new Pull Request
+Fork the repository.
+Create a new branch (git checkout -b feature-branch).
+Commit your changes (git commit -am 'Add new feature').
+Push to the branch (git push origin feature-branch).
+Create a new Pull Request.
