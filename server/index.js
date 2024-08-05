@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./src/routes/AuthRoutes");
 const messageRoutes = require("./src/routes/MessageRoutes");
 const userRoutes = require("./src/routes/UserRoutes");
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 const { app, server } = require("./src/socket/socket");
 
 app.use(express.json());
