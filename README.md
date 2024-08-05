@@ -89,9 +89,12 @@ Update user profile.
 ### Configuration
 
 Create a .env file in the root folder and add the following environment variables:
+
+```bash
 PORT=5000
 MONGO_URI=<your-mongodb-uri>
 JWT_SECRET=<your-jwt-secret>
+```
 
 ### Contributing
 
