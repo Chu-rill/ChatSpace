@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
 
   const { loading, login } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(username, password);
+  };
+
+  const toggleShow = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -34,17 +41,28 @@ export default function Login() {
             />
           </div>
 
-          <div>
+          <div className=" relative">
             <label className="label p-2">
               <span className=" text-base label-text ">Password</span>
             </label>
             <input
-              type="password"
+              type={showPassword ? "password" : "text"}
               placeholder="Enter password"
               className=" w-full input input-bordered h-10 "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {showPassword ? (
+              <FaRegEyeSlash
+                className=" absolute right-4 top-[50px] w-6 h-6  hover:cursor-pointer"
+                onClick={toggleShow}
+              />
+            ) : (
+              <FaRegEye
+                className=" absolute right-4 top-[50px] w-6 h-6  hover:cursor-pointer"
+                onClick={toggleShow}
+              />
+            )}
           </div>
 
           <Link

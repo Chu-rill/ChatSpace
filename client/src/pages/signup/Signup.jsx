@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useSignup from "../../hooks/useSignup";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 export default function Signup() {
   const [inputs, setInputs] = useState({
     username: "",
@@ -9,12 +11,17 @@ export default function Signup() {
   });
 
   const { loading, signup } = useSignup();
+  const [showPassword, setShowPassword] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(inputs);
     console.log(inputs);
   };
+  const toggleShow = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <div className=" flex flex-col items-center justify-center min-w-96 mx-auto ">
       <div className=" w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 ">
@@ -45,19 +52,19 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              placeholder="johndoe@fake.com"
+              placeholder="johndoe@gmail.com"
               className=" w-full input input-bordered h-10 "
               value={inputs.email}
               onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
             />
           </div>
 
-          <div>
+          <div className=" relative">
             <label className="label p-2">
               <span className=" text-base label-text ">Password</span>
             </label>
             <input
-              type="password"
+              type={showPassword ? "password" : "text"}
               placeholder="Enter password"
               className=" w-full input input-bordered h-10 "
               value={inputs.password}
@@ -65,6 +72,17 @@ export default function Signup() {
                 setInputs({ ...inputs, password: e.target.value })
               }
             />
+            {showPassword ? (
+              <FaRegEyeSlash
+                className=" absolute right-4 top-[50px] w-6 h-6  hover:cursor-pointer"
+                onClick={toggleShow}
+              />
+            ) : (
+              <FaRegEye
+                className=" absolute right-4 top-[50px] w-6 h-6  hover:cursor-pointer"
+                onClick={toggleShow}
+              />
+            )}
           </div>
 
           <Link

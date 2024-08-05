@@ -25,7 +25,7 @@ const useEdit = () => {
       }
 
       // Update authUser state with new data
-      setAuthUser((prev) => ({ ...prev, username, Bio }));
+      // setAuthUser((prev) => ({ ...prev, username, Bio }));
       toast.success("Edit Successful");
     } catch (error) {
       toast.error(error.message);

@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
@@ -18,8 +19,9 @@ app.get("/", (req, res) => {
   res.json({ status: "success" });
 });
 
-let URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/e-commerce";
+const URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/e-commerce";
 
+const _dirname = path.resolve();
 mongoose
   .connect(URI)
   .then(() => {
@@ -35,3 +37,7 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/msg", messageRoutes);
 app.use("/api/users", userRoutes);
+app.use(express.static(path.join(_dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(_dirname, "client", "dist", "index.html"));
+});
