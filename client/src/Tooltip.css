@@ -13,7 +13,7 @@
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position above the image */
+  bottom: 180%; /* Position above the image */
   left: 50%;
   margin-left: -60px;
   opacity: 0;
