@@ -8,7 +8,7 @@ const useEdit = () => {
   const { authUser, setAuthUser } = useAuthContext();
   const token = getToken();
 
-  const edit = async (username, Bio) => {
+  const edit = async (username, Bio, profilePicture) => {
     // const success = handleInputErrors(username, Bio);
     console.log(username);
     console.log(Bio);

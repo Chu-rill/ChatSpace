@@ -6,8 +6,26 @@ import { MdEdit } from "react-icons/md";
 export default function EditModal({ toggleModal, userdata }) {
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [profilePicture, setProfilePicture] = useState("pic");
+  const [profilePicture, setProfilePicture] = useState("");
   const { loading, edit } = useEdit();
+  const [imageSrc, setImageSrc] = useState("");
+
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        console.log(`READER: ${reader.result}`);
+        setImageSrc(reader.result);
+        setProfilePicture(reader.result);
+        console.log(`Profile Picture Set: ${reader.result}`);
+      };
+      reader.onerror = (error) => {
+        console.error(`FileReader Error: ${error}`);
+      };
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +38,8 @@ export default function EditModal({ toggleModal, userdata }) {
     // Reset form fields
     setUsername("");
     setBio("");
+    setProfilePicture(""); // Clear profile picture state
+    setImageSrc(""); // Clear image source state
   };
 
   return (
@@ -32,13 +52,25 @@ export default function EditModal({ toggleModal, userdata }) {
 
         <div className=" relative mt-5">
           <img
-            src={userdata}
+            src={imageSrc || userdata}
             className=" w-36 h-36 rounded-full mx-auto"
             alt=""
           />
-          <div className="btn btn-neutral btn-sm rounded-full w-10 h-10 absolute right-[100px] bottom-0">
-            <MdEdit className=" w-6 h-6" />
-          </div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange} // Handle file input change
+            className="hidden" // Hide the file input
+          />
+          <label className="btn btn-neutral btn-sm rounded-full w-10 h-10 absolute right-[100px] bottom-0 cursor-pointer">
+            <MdEdit className="w-6 h-6" />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden" // Hide the file input
+            />
+          </label>
         </div>
 
         <div className="mt-5">
