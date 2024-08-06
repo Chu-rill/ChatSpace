@@ -14,6 +14,7 @@ const useEdit = () => {
     console.log(Bio);
     // if (!success) return;
     setLoading(true);
+    //text
     try {
       const res = await fetch(
         `http://localhost:3001/api/users/update/${authUser._id}`,
