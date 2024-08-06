@@ -1,20 +1,47 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import { IoArrowBack } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EditModal from "./EditModal";
+import useDeleteUser from "../../hooks/useDeleteUser";
+import { toast } from "react-hot-toast";
 export default function EditProfile() {
   const { authUser, setAuthUser } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
   const [userData, setUserData] = useState(authUser);
+  const { deleteUser, loading } = useDeleteUser();
 
-  console.log(authUser);
+  console.log("User Data:", userData);
+  // console.log(authUser);
   const toggleModal = () => {
     setShowModal((prev) => !prev);
   };
   const handleUpdate = (updatedUser) => {
     setUserData(updatedUser); // Update authUser with the new values
   };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    // Check if userData and _id are defined
+    if (!userData || !userData._id) {
+      console.error("User data or user ID is missing");
+      toast.error("Unable to delete user. Please try again.");
+    }
+
+    try {
+      console.log(`to hook ${userData._id}`);
+      await deleteUser(userData._id); // Pass user ID to the delete function
+      setUserData(null); // Optionally, clear user from context after deletion
+      localStorage.removeItem("user");
+      toast.success("User deleted successfully");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Failed to delete user");
+      console.error("Failed to delete user:", error);
+    }
+  };
+
   return (
     <div className=" w-96 border-r border-slate-500 p-4 flex flex-col ">
       <Link to="/">
@@ -37,12 +64,20 @@ export default function EditProfile() {
         </div>
       </div>
       {showModal ? <EditModal toggleModal={toggleModal} /> : ""}
-      <button
-        className=" btn btn-neutral  btn-sm mt-5 w-28 "
-        onClick={toggleModal}
-      >
-        Edit Profile
-      </button>
+      <div className="flex justify-around">
+        <button
+          className=" btn btn-neutral  btn-sm mt-5 w-28 "
+          onClick={toggleModal}
+        >
+          Edit Profile
+        </button>
+        <button
+          className=" btn  bg-red-600 btn-sm mt-5 w-32 hover:bg-red-800 "
+          onClick={handleDelete}
+        >
+          Delete Profile
+        </button>
+      </div>
     </div>
   );
 }

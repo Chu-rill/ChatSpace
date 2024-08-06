@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
+import { storeToken } from "../jwt";
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();
   const login = async (username, password) => {
     const success = handleInputErrors(username, password);
+
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("http://localhost:3001/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -19,6 +21,11 @@ const useLogin = () => {
       if (data.message) {
         throw new Error(data.message);
       }
+      const token = data.token;
+      // console.log("token:" + token);
+
+      // Store token in session storage
+      storeToken(token);
       localStorage.setItem("user", JSON.stringify(data));
       setauthUser(data);
       toast.success("Login Succesful");

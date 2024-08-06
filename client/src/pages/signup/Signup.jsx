@@ -16,7 +16,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(inputs);
-    console.log(inputs);
+    // console.log(inputs);
   };
   const toggleShow = () => {
     setShowPassword((prev) => !prev);

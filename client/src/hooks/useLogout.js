@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import { getToken } from "../jwt";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();
+  const token = getToken();
   const logout = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/logout", {
+      const res = await fetch("http://localhost:3001/api/auth/logout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
       const data = res.json();
       if (data.error) {

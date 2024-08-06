@@ -1,15 +1,26 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import useConversation from "../zustand/useConversation";
+import { getToken } from "../jwt";
 const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
+  const token = getToken();
   useEffect(() => {
     const getMessages = async () => {
       if (!selectedConversation?._id) return;
       setLoading(true);
       try {
-        const res = await fetch(`/api/msg/${selectedConversation._id}`);
+        const res = await fetch(
+          `http://localhost:3001/api/msg/${selectedConversation._id}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const data = await res.json();
         console.log(data);
         // if (data.error) {

@@ -1,23 +1,31 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
+import { getToken } from "../jwt";
 
 const useEdit = () => {
   const [loading, setLoading] = useState(false);
   const { authUser, setAuthUser } = useAuthContext();
+  const token = getToken();
 
   const edit = async (username, Bio) => {
-    const success = handleInputErrors(username, Bio);
+    // const success = handleInputErrors(username, Bio);
     console.log(username);
     console.log(Bio);
-    if (!success) return;
+    // if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/update/${authUser._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, Bio }),
-      });
+      const res = await fetch(
+        `http://localhost:3001/api/users/update/${authUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, Bio }),
+        }
+      );
       const data = await res.json();
       console.log(data);
       if (data.message) {
