@@ -52,7 +52,7 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              placeholder="johndoe@gmail.com"
+              placeholder="johndoe@example.com"
               className=" w-full input input-bordered h-10 "
               value={inputs.email}
               onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
