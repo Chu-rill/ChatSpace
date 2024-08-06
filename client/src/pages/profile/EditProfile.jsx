@@ -63,7 +63,14 @@ export default function EditProfile() {
           <p>{userData.Bio}</p>
         </div>
       </div>
-      {showModal ? <EditModal toggleModal={toggleModal} /> : ""}
+      {showModal ? (
+        <EditModal
+          toggleModal={toggleModal}
+          userdata={userData.profilePicture}
+        />
+      ) : (
+        ""
+      )}
       <div className="flex justify-around">
         <button
           className=" btn btn-neutral  btn-sm mt-5 w-28 "

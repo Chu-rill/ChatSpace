@@ -23,7 +23,11 @@ const useEdit = () => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username, Bio }),
+          body: JSON.stringify({
+            username: username,
+            Bio: Bio,
+            profilePicture: profilePicture,
+          }),
         }
       );
       const data = await res.json();
