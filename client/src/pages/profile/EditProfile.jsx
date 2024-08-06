@@ -10,6 +10,7 @@ export default function EditProfile() {
   const [showModal, setShowModal] = useState(false);
   const [userData, setUserData] = useState(authUser);
   const { deleteUser, loading } = useDeleteUser();
+  const navigate = useNavigate();
 
   console.log("User Data:", userData);
   // console.log(authUser);
