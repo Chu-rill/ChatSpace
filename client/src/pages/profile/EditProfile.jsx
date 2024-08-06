@@ -37,6 +37,7 @@ export default function EditProfile() {
       localStorage.removeItem("user");
       toast.success("User deleted successfully");
       navigate("/login");
+      window.location.reload(); // Refresh the page
     } catch (error) {
       toast.error("Failed to delete user");
       console.error("Failed to delete user:", error);
