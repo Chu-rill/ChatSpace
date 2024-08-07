@@ -9,7 +9,7 @@ const useDeleteUser = () => {
       const token = getToken(); // Ensure you have a function to get the token
 
       const res = await fetch(
-        `http://localhost:3001/api/users/delete/${userId}`,
+        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/users/delete/${userId}`,
         {
           method: "DELETE",
           headers: {

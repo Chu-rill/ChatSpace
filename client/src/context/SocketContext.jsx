@@ -57,11 +57,14 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      const socket = io("http://localhost:3001", {
-        query: {
-          userId: authUser._id,
-        },
-      });
+      const socket = io(
+        "http://127.0.0.1:5001/chatspace-caee5/us-central1/api",
+        {
+          query: {
+            userId: authUser._id,
+          },
+        }
+      );
 
       setSocket(socket);
 

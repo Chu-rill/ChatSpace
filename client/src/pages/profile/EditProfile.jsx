@@ -53,12 +53,7 @@ export default function EditProfile() {
         <img
           src={userData.profilePicture}
           alt=""
-          className={`${
-            authUser.profilePicture ===
-            "https://api.dicebear.com/9.x/adventurer/svg?seed=Molly"
-              ? " w-16 h-16 rounded-full hover:cursor-pointer"
-              : "w-14 h-14 rounded-full hover:cursor-pointer"
-          }`}
+          className="w-14 h-14 rounded-full hover:cursor-pointer"
         />
         <div className=" ml-4">
           <h1 className=" mb-2">{userData.username}</h1>

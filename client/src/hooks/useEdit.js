@@ -17,7 +17,7 @@ const useEdit = () => {
     //text
     try {
       const res = await fetch(
-        `http://localhost:3001/api/users/update/${authUser._id}`,
+        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/users/update/${authUser._id}`,
         {
           method: "PUT",
           headers: {

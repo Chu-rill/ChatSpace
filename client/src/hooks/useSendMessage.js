@@ -11,7 +11,7 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:3001/api/msg/send/${selectedConversation._id}`,
+        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/msg/send/${selectedConversation._id}`,
         {
           method: "POST",
           headers: {
