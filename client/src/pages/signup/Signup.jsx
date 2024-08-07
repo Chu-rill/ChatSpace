@@ -37,7 +37,7 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Username"
               className=" w-full input input-bordered h-10 "
               value={inputs.username}
               onChange={(e) =>
@@ -52,7 +52,7 @@ export default function Signup() {
             </label>
             <input
               type="text"
-              placeholder="johndoe@example.com"
+              placeholder="email@example.com"
               className=" w-full input input-bordered h-10 "
               value={inputs.email}
               onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
