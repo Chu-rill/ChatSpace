@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 import "../../Tooltip.css"; // Create this CSS file
 export default function LogoutButton() {
   const { loading, logout } = useLogout();
+  const handleLogout = async () => {
+    await logout();
+    localStorage.removeItem("user");
+  };
+
   const { authUser } = useAuthContext();
   return (
     <div className="  mt-auto flex justify-between items-center px-4 pt-2 ">
@@ -14,7 +19,7 @@ export default function LogoutButton() {
         <div className="tooltip-container w-full h-full">
           <BiLogOut
             className=" w-full h-full text-white cursor-pointer "
-            onClick={logout}
+            onClick={handleLogout}
           />
           <div className="tooltip">Logout</div>
         </div>

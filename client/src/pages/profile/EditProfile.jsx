@@ -81,10 +81,15 @@ export default function EditProfile() {
           Edit Profile
         </button>
         <button
-          className=" btn  bg-red-600 btn-sm mt-5 w-32 hover:bg-red-800 "
+          type="submit"
+          className=" btn bg-red-600 btn-sm mt-5 w-32 hover:bg-red-800 "
           onClick={handleDelete}
         >
-          Delete Profile
+          {loading ? (
+            <span className="loading loading-dots loading-md"></span>
+          ) : (
+            " Delete Profile"
+          )}
         </button>
       </div>
     </div>
