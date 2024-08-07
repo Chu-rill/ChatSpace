@@ -8,13 +8,16 @@ const useDeleteUser = () => {
     try {
       const token = getToken(); // Ensure you have a function to get the token
 
-      const res = await fetch(`/api/users/delete/${userId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/users/delete/${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       // const data = await res.json();
       // if (res.ok) {
