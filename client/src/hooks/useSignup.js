@@ -14,7 +14,7 @@ const useSignup = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        "http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/auth/signup",
+        "https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/auth/signup",
         {
           method: "POST",
           headers: {

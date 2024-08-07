@@ -12,7 +12,7 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/msg/${selectedConversation._id}`,
+          `https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/msg/${selectedConversation._id}`,
           {
             method: "GET",
             headers: {
