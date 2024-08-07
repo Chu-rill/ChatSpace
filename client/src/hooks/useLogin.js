@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
 import { storeToken } from "../jwt";
+import { liveLink, localLink } from "./api";
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();
@@ -11,14 +12,11 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch(
-        "https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const res = await fetch(`${liveLink}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
       const data = await res.json();
       console.log(data);
       if (data.message) {

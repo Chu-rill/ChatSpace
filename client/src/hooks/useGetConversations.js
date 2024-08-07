@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { getToken } from "../jwt";
+import { liveLink, localLink } from "./api";
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
@@ -12,23 +13,21 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch(
-          "https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/users/",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            // body: JSON.stringify({ username, password }),
-          }
-        );
+        const res = await fetch(`${liveLink}/api/users/`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          // body: JSON.stringify({ username, password }),
+        });
 
         const data = await res.json();
         // console.log("Data from API:", data);
         if (data.error) {
           throw new Error(data.error);
         }
+
         setConversations(data);
         // setConversations(data.conversations || []);
       } catch (error) {

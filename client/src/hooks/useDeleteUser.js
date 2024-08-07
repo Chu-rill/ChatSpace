@@ -1,6 +1,6 @@
 import { getToken } from "../jwt";
 import { useState } from "react";
-
+import { liveLink, localLink } from "./api";
 const useDeleteUser = () => {
   const [loading, setLoading] = useState(false);
   const deleteUser = async (userId) => {
@@ -8,16 +8,13 @@ const useDeleteUser = () => {
     try {
       const token = getToken(); // Ensure you have a function to get the token
 
-      const res = await fetch(
-        `https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/users/delete/${userId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`${liveLink}/api/users/delete/${userId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
       // const data = await res.json();
       // if (res.ok) {

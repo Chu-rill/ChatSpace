@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast"; // Make sure to install and import toast
 import { useAuthContext } from "../context/AuthContext";
 import { storeToken } from "../jwt";
-
+import { liveLink, localLink } from "./api";
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();
@@ -13,16 +13,13 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(
-        "https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, email, password }),
-        }
-      );
+      const res = await fetch(`${liveLink}/api/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
 
       const data = await res.json();
       if (res.ok) {

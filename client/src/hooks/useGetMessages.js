@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import useConversation from "../zustand/useConversation";
 import { getToken } from "../jwt";
+import { liveLink, localLink } from "./api";
 const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
@@ -12,7 +13,7 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/msg/${selectedConversation._id}`,
+          `${liveLink}/api/msg/${selectedConversation._id}`,
           {
             method: "GET",
             headers: {

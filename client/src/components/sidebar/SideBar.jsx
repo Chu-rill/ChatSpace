@@ -5,7 +5,7 @@ import LogoutButton from "./LogoutButton";
 
 export default function SideBar() {
   return (
-    <div className=" border-r border-slate-500 p-4 flex flex-col">
+    <div className=" max-w-[400px] border-r border-slate-500 p-4 flex flex-col">
       <SearchInput />
       <div className=" divider px-3 "></div>
       <Conversations />

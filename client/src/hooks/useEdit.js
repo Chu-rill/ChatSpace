@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
 import { getToken } from "../jwt";
-
+import { liveLink, localLink } from "./api";
 const useEdit = () => {
   const [loading, setLoading] = useState(false);
   const { authUser, setAuthUser } = useAuthContext();
@@ -16,21 +16,18 @@ const useEdit = () => {
     setLoading(true);
     //text
     try {
-      const res = await fetch(
-        `https://us-central1-chatspace-caee5.cloudfunctions.net/api/api/users/update/${authUser._id}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            Bio: Bio,
-            profilePicture: profilePicture,
-          }),
-        }
-      );
+      const res = await fetch(`${liveLink}/api/users/update/${authUser._id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          Bio: Bio,
+          profilePicture: profilePicture,
+        }),
+      });
       const data = await res.json();
       console.log(data);
       if (data.message) {
