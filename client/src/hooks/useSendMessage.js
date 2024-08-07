@@ -10,17 +10,14 @@ const useSendMessage = () => {
   const sendMessage = async (message) => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/msg/send/${selectedConversation._id}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message }),
-        }
-      );
+      const res = await fetch(`/api/msg/send/${selectedConversation._id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }),
+      });
       const data = await res.json();
       if (!data.message) {
         throw new Error(data.message);

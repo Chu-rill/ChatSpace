@@ -16,21 +16,18 @@ const useEdit = () => {
     setLoading(true);
     //text
     try {
-      const res = await fetch(
-        `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/users/update/${authUser._id}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            Bio: Bio,
-            profilePicture: profilePicture,
-          }),
-        }
-      );
+      const res = await fetch(`/api/users/update/${authUser._id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          Bio: Bio,
+          profilePicture: profilePicture,
+        }),
+      });
       const data = await res.json();
       console.log(data);
       if (data.message) {

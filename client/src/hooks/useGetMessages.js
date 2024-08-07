@@ -11,16 +11,13 @@ const useGetMessages = () => {
       if (!selectedConversation?._id) return;
       setLoading(true);
       try {
-        const res = await fetch(
-          `http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/msg/${selectedConversation._id}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const res = await fetch(`/api/msg/${selectedConversation._id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
         const data = await res.json();
         console.log(data);
         // if (data.error) {

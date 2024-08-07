@@ -11,14 +11,11 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch(
-        "http://127.0.0.1:5001/chatspace-caee5/us-central1/api/api/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
       const data = await res.json();
       console.log(data);
       if (data.message) {
