@@ -3,8 +3,7 @@ import { BiLogOut } from "react-icons/bi";
 import useLogout from "../../hooks/useLogout";
 import { useAuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-// import {Tooltip as ReactTooltip} from "react-tooltip";
-import "../../Tooltip.css"; // Create this CSS file
+import "../../Tooltip.css";
 export default function LogoutButton() {
   const { loading, logout } = useLogout();
   const handleLogout = async () => {

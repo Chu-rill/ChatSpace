@@ -13,7 +13,7 @@ export default function MessageContainer() {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
   return (
-    <div className=" max-w-[600px] p-5 md:min-w-[450px] flex flex-col">
+    <div className=" w-[450px] p-5  flex flex-col">
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (
