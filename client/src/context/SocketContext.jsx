@@ -59,8 +59,8 @@ export const SocketContextProvider = ({ children }) => {
     if (authUser) {
       const socket = io(
         // "http://127.0.0.1:5001/chatspace-caee5/us-central1/api",
-        "https://us-central1-chatspace-caee5.cloudfunctions.net/api",
-        // "http://localhost:3001",
+        // "https://us-central1-chatspace-caee5.cloudfunctions.net/api",
+        "http://localhost:3001",
         {
           query: {
             userId: authUser._id,
