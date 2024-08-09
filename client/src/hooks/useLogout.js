@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { getToken } from "../jwt";
-import { liveLink, localLink } from "./api";
+import { liveLink, localLink, localLink2 } from "./api";
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();

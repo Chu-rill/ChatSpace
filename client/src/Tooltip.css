@@ -2,7 +2,10 @@
   position: relative;
   display: inline-block;
 }
-
+.container-message {
+  position: relative;
+  display: inline-block;
+}
 .tooltip {
   visibility: hidden;
   width: 120px;
@@ -19,8 +22,28 @@
   opacity: 0;
   transition: opacity 0.3s;
 }
-
+.delete {
+  visibility: hidden;
+  /* width: 120px; */
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  display: block;
+  z-index: 1;
+  bottom: -25%; /* Position above the image */
+  right: 13%;
+  /* margin-left: -60px; */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 .tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+.container-message:hover .delete {
   visibility: visible;
   opacity: 1;
 }
