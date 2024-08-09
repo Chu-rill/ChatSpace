@@ -70,6 +70,9 @@ export default function Login() {
             className=" text-sm hover:underline hover:text-blue-600 mt-2 inline-block "
           >
             Don't have an account?
+            <span className=" text-purple-500 ml-1 hover:text-blue-600">
+              SignUp
+            </span>
           </Link>
           <div>
             <button
