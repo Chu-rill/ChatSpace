@@ -13,7 +13,7 @@ const useSignup = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`${liveLink}/api/auth/signup`, {
+      const res = await fetch(`${localLink2}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

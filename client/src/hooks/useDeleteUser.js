@@ -8,7 +8,7 @@ const useDeleteUser = () => {
     try {
       const token = getToken(); // Ensure you have a function to get the token
 
-      const res = await fetch(`${liveLink}/api/users/delete/${userId}`, {
+      const res = await fetch(`${localLink2}/api/users/delete/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

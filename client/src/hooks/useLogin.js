@@ -12,7 +12,7 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch(`${liveLink}/api/auth/login`, {
+      const res = await fetch(`${localLink2}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
