@@ -12,7 +12,7 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${localLink2}/api/msg/send/${selectedConversation._id}`,
+        `${liveLink}/api/msg/send/${selectedConversation._id}`,
         {
           method: "POST",
           headers: {
