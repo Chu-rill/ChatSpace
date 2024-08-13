@@ -88,7 +88,7 @@ export default function Signup() {
           <Link to="/login" className=" text-sm  mt-2 inline-block ">
             Already have an account?
             <span className=" text-purple-500 ml-1 hover:text-blue-600">
-              SignUp
+              Signin
             </span>
           </Link>
           <div>
