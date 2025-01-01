@@ -13,7 +13,7 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${liveLink}/api/users/`, {
+        const res = await fetch(`${localLink2}/api/v1/users/`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

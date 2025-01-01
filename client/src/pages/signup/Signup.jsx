@@ -6,7 +6,6 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 export default function Signup() {
   const [inputs, setInputs] = useState({
     username: "",
-    email: "",
     password: "",
   });
 
@@ -43,19 +42,6 @@ export default function Signup() {
               onChange={(e) =>
                 setInputs({ ...inputs, username: e.target.value })
               }
-            />
-          </div>
-
-          <div>
-            <label className="label p-2">
-              <span className=" text-base label-text ">Email</span>
-            </label>
-            <input
-              type="text"
-              placeholder="email@example.com"
-              className=" w-full input input-bordered h-10 "
-              value={inputs.email}
-              onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
             />
           </div>
 

@@ -9,7 +9,7 @@ const useLogout = () => {
   const logout = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${liveLink}/api/auth/logout`, {
+      const res = await fetch(`${localLink2}/api/v1/auth/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

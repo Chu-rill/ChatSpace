@@ -16,18 +16,21 @@ const useEdit = () => {
     setLoading(true);
     //text
     try {
-      const res = await fetch(`${liveLink}/api/users/update/${authUser._id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          Bio: Bio,
-          profilePicture: profilePicture,
-        }),
-      });
+      const res = await fetch(
+        `${localLink2}/api/v1/users/update/${authUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            Bio: Bio,
+            profilePicture: profilePicture,
+          }),
+        }
+      );
       const data = await res.json();
       console.log(data);
       if (data.message) {

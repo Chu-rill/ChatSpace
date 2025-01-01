@@ -13,7 +13,7 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `${liveLink}/api/msg/${selectedConversation._id}`,
+          `${localLink2}/api/v1/msg/${selectedConversation._id}`,
           {
             method: "GET",
             headers: {

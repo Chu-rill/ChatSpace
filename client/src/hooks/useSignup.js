@@ -7,18 +7,18 @@ const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const { setauthUser } = useAuthContext();
 
-  const signup = async ({ username, email, password }) => {
-    const success = handleInputErrors({ username, email, password });
+  const signup = async ({ username, password }) => {
+    const success = handleInputErrors({ username, password });
     if (!success) return;
 
     setLoading(true);
     try {
-      const res = await fetch(`${liveLink}/api/auth/signup`, {
+      const res = await fetch(`${localLink2}/api/v1/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await res.json();
@@ -53,8 +53,8 @@ const useSignup = () => {
 
 export default useSignup;
 
-function handleInputErrors({ username, email, password }) {
-  if (!username || !email || !password) {
+function handleInputErrors({ username, password }) {
+  if (!username || !password) {
     toast.error("Please fill all fields");
     return false;
   }
